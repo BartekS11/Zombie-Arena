@@ -159,14 +159,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Bullet.cpp" />
-    <ClCompile Include="CreateBackground.cpp" />
-    <ClCompile Include="CreateHorde.cpp" />
-    <ClCompile Include="Pickup.cpp" />
-    <ClCompile Include="Player.cpp" />
-    <ClCompile Include="TextureHolder.cpp" />
-    <ClCompile Include="Zombie.cpp" />
-    <ClCompile Include="ZombieArena.cpp" />
+    <ClCompile Include="src\Bullet.cpp" />
+    <ClCompile Include="src\CreateBackground.cpp" />
+    <ClCompile Include="src\CreateHorde.cpp" />
+    <ClCompile Include="src\Pickup.cpp" />
+    <ClCompile Include="src\Player.cpp" />
+    <ClCompile Include="src\TextureHolder.cpp" />
+    <ClCompile Include="src\Zombie.cpp" />
+    <ClCompile Include="src\ZombieArena.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Font Include="fonts\zombiecontrol.ttf" />
@@ -195,6 +195,7 @@
     <Media Include="sound\splat.wav" />
   </ItemGroup>
   <ItemGroup>
+    <None Include=".gitignore" />
     <None Include="openal32.dll" />
     <None Include="sfml-audio-2.dll" />
     <None Include="sfml-audio-d-2.dll" />
@@ -208,12 +209,12 @@
     <None Include="sfml-window-d-2.dll" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Bullet.h" />
-    <ClInclude Include="Pickup.h" />
-    <ClInclude Include="Player.h" />
-    <ClInclude Include="TextureHolder.h" />
-    <ClInclude Include="Zombie.h" />
-    <ClInclude Include="ZombieArena.h" />
+    <ClInclude Include="src\Bullet.h" />
+    <ClInclude Include="src\Pickup.h" />
+    <ClInclude Include="src\Player.h" />
+    <ClInclude Include="src\TextureHolder.h" />
+    <ClInclude Include="src\Zombie.h" />
+    <ClInclude Include="src\ZombieArena.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="gamedata\scores.txt" />
