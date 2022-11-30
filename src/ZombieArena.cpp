@@ -7,6 +7,7 @@
 #include "TextureHolder.h"
 #include "Bullet.h"
 #include "Pickup.h"
+#include "SoundHandler.h"
 
 int main()
 {
@@ -39,6 +40,9 @@ int main()
 	sf::VertexArray background;
 
 	sf::Texture textureBackground = TextureHolder::GetTexture("graphics/background_sheet.png");
+
+	SoundHandler::LoadNecessarySoundsToBuffers();
+	SoundHandler::LoadNecessarySoundsToSFMLSounds();
 
 	int numZombies;
 	int numZombiesAlive;
@@ -158,41 +162,6 @@ int main()
 	int framesSinceLastHUDUpdate = 0;
 	int fpsMeasurementFrameInterval = 1000;
 
-	sf::SoundBuffer hitBuffer;
-	hitBuffer.loadFromFile("sound/hit.wav");
-	sf::Sound hit;
-	hit.setBuffer(hitBuffer);
-
-	sf::SoundBuffer splatBuffer;
-	splatBuffer.loadFromFile("sound/splat.wav");
-	sf::Sound splat;
-	splat.setBuffer(splatBuffer);
-
-	sf::SoundBuffer shootBuffer;
-	shootBuffer.loadFromFile("sound/shoot.wav");
-	sf::Sound shoot;
-	shoot.setBuffer(shootBuffer);
-
-	sf::SoundBuffer reloadBuffer;
-	reloadBuffer.loadFromFile("sound/reload.wav");
-	sf::Sound reload;
-	reload.setBuffer(reloadBuffer);
-
-	sf::SoundBuffer reloadFailedBuffer;
-	reloadFailedBuffer.loadFromFile("sound/reload_failed.wav");
-	sf::Sound reloadFailed;
-	reloadFailed.setBuffer(reloadFailedBuffer);
-
-	sf::SoundBuffer powerupBuffer;
-	powerupBuffer.loadFromFile("sound/powerup.wav");
-	sf::Sound powerup;
-	powerup.setBuffer(powerupBuffer);
-
-	sf::SoundBuffer pickupBuffer;
-	pickupBuffer.loadFromFile("sound/pickup.wav");
-	sf::Sound pickup;
-	pickup.setBuffer(pickupBuffer);
-
 	while (window.isOpen())
 	{
 		/*
@@ -240,21 +209,23 @@ int main()
 						{
 							bulletsInClip = clipSize;
 							bulletsSpare -= clipSize;
-
-							reload.setVolume(30);
-							reload.play();
+							SoundHandler::playSound("reload", 30);
+							//reload.setVolume(30);
+							//reload.play();
 						}
 						else if (bulletsSpare > 0)
 						{
 							bulletsInClip = bulletsSpare;
 							bulletsSpare = 0;
-							reload.setVolume(30);
-							reload.play();
+							SoundHandler::playSound("reload", 30);
+							/*reload.setVolume(30);
+							reload.play();*/
 						}
 						else
 						{
-							reloadFailed.setVolume(25);
-							reloadFailed.play();
+							SoundHandler::playSound("reload_Failed", 25);
+							/*reloadFailed.setVolume(25);
+							reloadFailed.play();*/
 						}
 					}
 				}
@@ -315,8 +286,9 @@ int main()
 					}
 					lastPressed = gameTimeTotal;
 
-					shoot.setVolume(10);
-					shoot.play();
+					SoundHandler::playSound("shoot", 10);
+					/*shoot.setVolume(10);
+					shoot.play();*/
 
 					bulletsInClip--;
 				}
@@ -375,9 +347,10 @@ int main()
 				delete[] zombies;
 				zombies = createHorde(numZombies, arena);
 				numZombiesAlive = numZombies;
-				
-				powerup.setVolume(15);
-				powerup.play();
+
+				SoundHandler::playSound("powerup", 15);
+				/*powerup.setVolume(15);
+				powerup.play();*/
 
 				clock.restart();
 			}
@@ -445,8 +418,9 @@ int main()
 									state = State::LEVELING_UP;
 								}
 							}
-							splat.setVolume(5);
-							splat.play();
+							SoundHandler::playSound("splat", 15);
+							/*splat.setVolume(5);
+							splat.play();*/
 						}
 					}
 				}
@@ -457,8 +431,9 @@ int main()
 				{
 					if (player.hit(gameTimeTotal))
 					{
-						hit.setVolume(25);
-						hit.play();
+						SoundHandler::playSound("hit", 25);
+						//hit.setVolume(25);
+						//hit.play();
 					}
 					if (player.getHealth() <= 0)
 					{
@@ -473,14 +448,16 @@ int main()
 			if (player.getPosition().intersects(ammoPickup.getPosition()) && ammoPickup.isSpawned())
 			{
 				bulletsSpare += ammoPickup.gotIt();
-				reload.setVolume(25);
-				reload.play();
+				SoundHandler::playSound("reload", 25);
+				//reload.setVolume(25);
+				//reload.play();
 			}
 			if (player.getPosition().intersects(healthPickup.getPosition()) && healthPickup.isSpawned())
 			{
 				player.increaseHealthLevel(healthPickup.gotIt());
-				pickup.setVolume(25);
-				pickup.play();
+				SoundHandler::playSound("pickup", 25);
+				//pickup.setVolume(25);
+				//pickup.play();
 			}
 			
 			healthBar.setSize(sf::Vector2f(player.getHealth() * 3, 50));

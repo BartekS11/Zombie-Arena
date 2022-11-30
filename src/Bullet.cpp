@@ -2,7 +2,7 @@
 
 Bullet::Bullet()
 {
-	m_BulletShape.setSize(sf::Vector2f(2, 2));
+	m_BulletShape.setSize(sf::Vector2f(2.f, 2.f));
 }
 
 void Bullet::stop()

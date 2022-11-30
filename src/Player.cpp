@@ -7,12 +7,9 @@ Player::Player()
 	m_Health = START_HEALTH;
 	m_MaxHealth = START_HEALTH;
 
-
-	//m_Texture.loadFromFile("graphics/player.png");
-	//m_Sprite.setTexture(m_Texture);
 	m_Sprite = sf::Sprite(TextureHolder::GetTexture("graphics/player.png"));
 
-	m_Sprite.setOrigin(25, 25);
+	m_Sprite.setOrigin(25.f, 25.f);
 }
 
 void Player::spawn(sf::IntRect arena, sf::Vector2f resolution, int tilesize)

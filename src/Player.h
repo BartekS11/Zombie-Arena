@@ -18,19 +18,19 @@ private:
 
 	sf::IntRect m_Arena;
 
-	int m_TileSize;
+	int m_TileSize = 0;
 
 	bool m_UpPressed;
 	bool m_DownPressed;
 	bool m_LeftPressed;
 	bool m_RightPressed;
 
-	int m_Health;
-	int m_MaxHealth;
+	int m_Health = 0;
+	int m_MaxHealth = 0;
 
 	sf::Time m_LastHit;
 
-	float m_Speed;
+	float m_Speed = 0.f;
 
 public:
 	Player();

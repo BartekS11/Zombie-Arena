@@ -15,7 +15,7 @@ Pickup::Pickup(int type)
 		m_Sprite = sf::Sprite(TextureHolder::GetTexture("graphics/ammo_pickup.png"));
 		m_Value = AMMO_START_VALUE;
 	}
-	m_Sprite.setOrigin(25, 25);
+	m_Sprite.setOrigin(25.f, 25.f);
 
 	m_SecondsToLive = START_SECONDS_TO_LIVE;
 	m_SecondsToWait = START_WAIT_TIME;

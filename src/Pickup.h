@@ -11,14 +11,14 @@ private:
 
 	sf::Sprite m_Sprite;
 	sf::IntRect m_Arena;
-	int m_Value;
-	int m_Type;
+	int m_Value = 0;
+	int m_Type = 0;
 
 	bool m_Spawned;
-	float m_SecondsSinceSpawn;
-	float m_SecondsSinceDeSpawn;
-	float m_SecondsToLive;
-	float m_SecondsToWait;
+	float m_SecondsSinceSpawn = 0.f;
+	float m_SecondsSinceDeSpawn = 0.f;
+	float m_SecondsToLive = 0.f;
+	float m_SecondsToWait = 0.f;
 
 public:
 	Pickup(int type);

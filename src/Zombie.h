@@ -4,13 +4,13 @@
 class Zombie
 {
 private:
-	const float BLOATER_SPEED = 40;
-	const float CHASER_SPEED = 80;
-	const float CRAWLER_SPEED = 20;
+	const float BLOATER_SPEED = 40.f;
+	const float CHASER_SPEED = 80.f;
+	const float CRAWLER_SPEED = 20.f;
 
-	const float BLOATER_HEALTH = 5;
-	const float CHASER_HEALTH = 1;
-	const float CRAWLER_HEALTH = 3;
+	const float BLOATER_HEALTH = 5.f;
+	const float CHASER_HEALTH = 1.f;
+	const float CRAWLER_HEALTH = 3.f;
 
 	const int MAX_VARRIANCE = 30;
 	const int OFFSET = 101 - MAX_VARRIANCE;
