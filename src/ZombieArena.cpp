@@ -12,7 +12,7 @@
 int main()
 {
 	TextureHolder holder;
-
+	SoundHandler soundHandler;
 	enum class State { PAUSED, LEVELING_UP, GAME_OVER, PLAYING };
 
 	State state = State::GAME_OVER;
@@ -164,11 +164,7 @@ int main()
 
 	while (window.isOpen())
 	{
-		/*
-		************
-		Handle input
-		************
-		*/
+
 		sf::Event event;
 		while (window.pollEvent(event))
 		{
@@ -197,7 +193,6 @@ int main()
 					bulletsInClip = 6;
 					clipSize = 6;
 					fireRate = 1;
-
 					player.resetPlayerStats();
 				}
 
@@ -210,23 +205,23 @@ int main()
 							bulletsInClip = clipSize;
 							bulletsSpare -= clipSize;
 							SoundHandler::playSound("reload", 30);
-							//reload.setVolume(30);
-							//reload.play();
 						}
 						else if (bulletsSpare > 0)
 						{
 							bulletsInClip = bulletsSpare;
 							bulletsSpare = 0;
 							SoundHandler::playSound("reload", 30);
-							/*reload.setVolume(30);
-							reload.play();*/
 						}
 						else
 						{
 							SoundHandler::playSound("reload_Failed", 25);
-							/*reloadFailed.setVolume(25);
-							reloadFailed.play();*/
 						}
+					}
+					if (bulletsInClip == 0 && sf::Mouse::isButtonPressed(sf::Mouse::Left))
+					{
+						bulletsInClip = clipSize;
+						bulletsSpare -= clipSize;
+						SoundHandler::playSound("reload", 30);
 					}
 				}
 			}
@@ -287,10 +282,8 @@ int main()
 					lastPressed = gameTimeTotal;
 
 					SoundHandler::playSound("shoot", 10);
-					/*shoot.setVolume(10);
-					shoot.play();*/
-
 					bulletsInClip--;
+
 				}
 			}
 		}
@@ -349,9 +342,6 @@ int main()
 				numZombiesAlive = numZombies;
 
 				SoundHandler::playSound("powerup", 15);
-				/*powerup.setVolume(15);
-				powerup.play();*/
-
 				clock.restart();
 			}
 		}
@@ -419,8 +409,6 @@ int main()
 								}
 							}
 							SoundHandler::playSound("splat", 15);
-							/*splat.setVolume(5);
-							splat.play();*/
 						}
 					}
 				}
@@ -432,8 +420,6 @@ int main()
 					if (player.hit(gameTimeTotal))
 					{
 						SoundHandler::playSound("hit", 25);
-						//hit.setVolume(25);
-						//hit.play();
 					}
 					if (player.getHealth() <= 0)
 					{
@@ -449,15 +435,11 @@ int main()
 			{
 				bulletsSpare += ammoPickup.gotIt();
 				SoundHandler::playSound("reload", 25);
-				//reload.setVolume(25);
-				//reload.play();
 			}
 			if (player.getPosition().intersects(healthPickup.getPosition()) && healthPickup.isSpawned())
 			{
 				player.increaseHealthLevel(healthPickup.gotIt());
 				SoundHandler::playSound("pickup", 25);
-				//pickup.setVolume(25);
-				//pickup.play();
 			}
 			
 			healthBar.setSize(sf::Vector2f(player.getHealth() * 3, 50));
@@ -489,11 +471,6 @@ int main()
 				framesSinceLastHUDUpdate = 0;
 			}
 		}
-		/*
-		 **************
-		 Draw the scene
-		 **************
-		*/
 		if (state == State::PLAYING)
 		{
 			window.clear();

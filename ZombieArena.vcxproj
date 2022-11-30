@@ -164,6 +164,8 @@
     <ClCompile Include="src\CreateHorde.cpp" />
     <ClCompile Include="src\Pickup.cpp" />
     <ClCompile Include="src\Player.cpp" />
+    <ClCompile Include="src\SoundHandler.cpp" />
+    <ClCompile Include="src\TextHandler.cpp" />
     <ClCompile Include="src\TextureHolder.cpp" />
     <ClCompile Include="src\Zombie.cpp" />
     <ClCompile Include="src\ZombieArena.cpp" />
@@ -212,6 +214,8 @@
     <ClInclude Include="src\Bullet.h" />
     <ClInclude Include="src\Pickup.h" />
     <ClInclude Include="src\Player.h" />
+    <ClInclude Include="src\SoundHandler.h" />
+    <ClInclude Include="src\TextHandler.h" />
     <ClInclude Include="src\TextureHolder.h" />
     <ClInclude Include="src\Zombie.h" />
     <ClInclude Include="src\ZombieArena.h" />

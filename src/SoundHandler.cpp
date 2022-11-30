@@ -5,7 +5,9 @@ SoundHandler* SoundHandler::p_SoundPointer = nullptr;
 
 SoundHandler::SoundHandler()
 {
+	assert(p_SoundPointer == nullptr);
 	p_SoundPointer = this;
+	/*p_SoundPointer = new SoundHandler;*/
 }
 
 void SoundHandler::LoadNecessarySoundsToBuffers()
