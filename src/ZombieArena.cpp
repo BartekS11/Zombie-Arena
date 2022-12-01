@@ -8,6 +8,7 @@
 #include "Bullet.h"
 #include "Pickup.h"
 #include "SoundHandler.h"
+#include "TextHandler.h"
 
 int main()
 {
@@ -83,25 +84,12 @@ int main()
 	sf::Font font;
 	font.loadFromFile("fonts/zombiecontrol.ttf");
 
-	sf::Text pausedText;
-	pausedText.setFont(font);
-	pausedText.setCharacterSize(155);
-	pausedText.setFillColor(sf::Color::White);
-	pausedText.setPosition(400, 400);
-	pausedText.setString("Press Enter \nto continue");
+	TextHandler pausedText(font, 400, 400, 
+		sf::Color::White, 155, "Press Enter \nto continue");
 
-	sf::Text gameOverText;
-	gameOverText.setFont(font);
-	gameOverText.setCharacterSize(125);
-	gameOverText.setFillColor(sf::Color::White);
-	gameOverText.setPosition(250, 850);
-	gameOverText.setString("Press Enter to play");
+	TextHandler gameOverText(font, 250, 850,
+		sf::Color::White, 125, "Press Enter to play");
 
-	sf::Text levelUpText;
-	levelUpText.setFont(font);
-	levelUpText.setCharacterSize(80);
-	levelUpText.setFillColor(sf::Color::White);
-	levelUpText.setPosition(150, 250);
 	std::stringstream levelUpStream;
 	levelUpStream <<
 		"1- Increased rate of fire" <<
@@ -110,19 +98,15 @@ int main()
 		"\n4- Increased run speed" <<
 		"\n5- More and better health pickups" <<
 		"\n6- More and better ammo pickups";
-	levelUpText.setString(levelUpStream.str());
 
-	sf::Text ammoText;
-	ammoText.setFont(font);
-	ammoText.setCharacterSize(55);
-	ammoText.setFillColor(sf::Color::White);
-	ammoText.setPosition(200, 980);
+	TextHandler levelUpText(font, 150, 250,
+		sf::Color::White, 80, levelUpStream.str());
 
-	sf::Text scoreText;
-	scoreText.setFont(font);
-	scoreText.setCharacterSize(55);
-	scoreText.setFillColor(sf::Color::White);
-	scoreText.setPosition(20, 0);
+	TextHandler ammoText(font, 200, 980,
+		sf::Color::White, 55);
+
+	TextHandler scoreText(font, 20, 0,
+		sf::Color::White, 55);
 
 	std::ifstream inputFile("gamedata/scores.txt");
 	if (inputFile.is_open())
@@ -131,29 +115,18 @@ int main()
 		inputFile.close();
 	}
 
-	sf::Text hiScoreText;
-	hiScoreText.setFont(font);
-	hiScoreText.setCharacterSize(55);
-	hiScoreText.setFillColor(sf::Color::White);
-	hiScoreText.setPosition(1400, 0);
 	std::stringstream s;
 	s << "Hi Score:" << hiScore;
-	hiScoreText.setString(s.str());
 
-	sf::Text zombiesRemainingText;
-	zombiesRemainingText.setFont(font);
-	zombiesRemainingText.setCharacterSize(55);
-	zombiesRemainingText.setFillColor(sf::Color::White);
-	zombiesRemainingText.setPosition(1500, 980);
-	zombiesRemainingText.setString("Zombies: 100");
+	TextHandler hiScoreText(font, 1400, 0,
+		sf::Color::White, 55, s.str());
+
+	TextHandler zombiesRemainingText(font, 1500, 980,
+		sf::Color::White, 55, "Zombies: 100");
 
 	int wave = 0;
-	sf::Text waveNumberText;
-	waveNumberText.setFont(font);
-	waveNumberText.setCharacterSize(55);
-	waveNumberText.setFillColor(sf::Color::White);
-	waveNumberText.setPosition(1250, 980);
-	waveNumberText.setString("Wave: 0");
+	TextHandler waveNumberText(font, 1250, 980,
+		sf::Color::White, 55, "Wave: 0");
 
 	sf::RectangleShape healthBar;
 	healthBar.setFillColor(sf::Color::Red);
@@ -454,19 +427,19 @@ int main()
 				std::stringstream ssZombiesAlive;
 
 				ssAmmo << bulletsInClip << "/" << bulletsSpare;
-				ammoText.setString(ssAmmo.str());
+				ammoText.updateString(ssAmmo.str());
 
 				ssScore << "Score:" << score;
-				scoreText.setString(ssScore.str());
+				scoreText.updateString(ssScore.str());
 
 				ssHiScore << "Hi Score:" << hiScore;
-				hiScoreText.setString(ssHiScore.str());
+				hiScoreText.updateString(ssHiScore.str());
 
 				ssWave << "Wave:" << wave;
-				waveNumberText.setString(ssWave.str());
+				waveNumberText.updateString(ssWave.str());
 
 				ssZombiesAlive << "Zombies:" << numZombiesAlive;
-				zombiesRemainingText.setString(ssZombiesAlive.str());
+				zombiesRemainingText.updateString(ssZombiesAlive.str());
 
 				framesSinceLastHUDUpdate = 0;
 			}
@@ -506,31 +479,31 @@ int main()
 
 			window.setView(hudView);
 			window.draw(spriteAmmoIcon);
-			window.draw(ammoText);
-			window.draw(scoreText);
-			window.draw(hiScoreText);
+			window.draw(ammoText.getsfText());
+			window.draw(scoreText.getsfText());
+			window.draw(hiScoreText.getsfText());
 			window.draw(healthBar);
-			window.draw(waveNumberText);
-			window.draw(zombiesRemainingText);
+			window.draw(waveNumberText.getsfText());
+			window.draw(zombiesRemainingText.getsfText());
 		}
 
 		if (state == State::LEVELING_UP)
 		{
 			window.draw(spriteGameOver);
-			window.draw(levelUpText);
+			window.draw(levelUpText.getsfText());
 		}
 
 		if (state == State::PAUSED)
 		{
-			window.draw(pausedText);
+			window.draw(pausedText.getsfText());
 		}
 
 		if (state == State::GAME_OVER)
 		{
 			window.draw(spriteGameOver);
-			window.draw(gameOverText);
-			window.draw(scoreText);
-			window.draw(hiScoreText);
+			window.draw(gameOverText.getsfText());
+			window.draw(scoreText.getsfText());
+			window.draw(hiScoreText.getsfText());
 		}
 		window.display();
 	}

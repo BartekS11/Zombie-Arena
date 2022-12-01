@@ -1,0 +1,1 @@
+//TODO: implement main file, create game class to abstract more this project, to not open everything directly from main

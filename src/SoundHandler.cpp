@@ -7,7 +7,6 @@ SoundHandler::SoundHandler()
 {
 	assert(p_SoundPointer == nullptr);
 	p_SoundPointer = this;
-	/*p_SoundPointer = new SoundHandler;*/
 }
 
 void SoundHandler::LoadNecessarySoundsToBuffers()
@@ -72,7 +71,6 @@ void SoundHandler::LoadNecessarySoundsToSFMLSounds()
 	playableSounds.insert({ "pickup", pickup });
 
 }
-
 
 void SoundHandler::playSound(std::string const& soundName, int volume=15)
 {
