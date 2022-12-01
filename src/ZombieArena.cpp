@@ -15,7 +15,6 @@ int main()
 	TextureHolder holder;
 	SoundHandler soundHandler;
 	enum class State { PAUSED, LEVELING_UP, GAME_OVER, PLAYING };
-
 	State state = State::GAME_OVER;
 
 	sf::Vector2f resolution;
@@ -57,14 +56,14 @@ int main()
 	float fireRate = 1;
 	sf::Time lastPressed;
 	
-	window.setMouseCursorVisible(true);
+	window.setMouseCursorVisible(false);
 	sf::Sprite spriteCrosshair;
 	sf::Texture textureCrosshair = TextureHolder::GetTexture("graphics/crosshair.png");
 	spriteCrosshair.setTexture(textureCrosshair);
 	spriteCrosshair.setOrigin(25, 25);
 
-	Pickup healthPickup(1);
-	Pickup ammoPickup(2);
+	Pickup healthPickup(PickupType::HEALTH);
+	Pickup ammoPickup(PickupType::AMMO);
 
 	int score = 0;
 	int hiScore = 0;

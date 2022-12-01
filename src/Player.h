@@ -11,7 +11,6 @@ private:
 
 	sf::Sprite m_Sprite;
 
-
 	sf::Texture m_Texture;
 
 	sf::Vector2f m_Resolution;

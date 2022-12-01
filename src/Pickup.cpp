@@ -1,11 +1,10 @@
 #include "Pickup.h"
 #include "TextureHolder.h"
 
-
-Pickup::Pickup(int type)
+Pickup::Pickup(PickupType m)
 {
-	m_Type = type;
-	if (m_Type == 1)
+	m_Type = m;
+	if (m_Type == PickupType::HEALTH)
 	{
 		m_Sprite = sf::Sprite(TextureHolder::GetTexture("graphics/health_pickup.png"));
 		m_Value = HEALTH_START_VALUE;
@@ -21,21 +20,22 @@ Pickup::Pickup(int type)
 	m_SecondsToWait = START_WAIT_TIME;
 }
 
+
 void Pickup::setArena(sf::IntRect arena)
 {
-	m_Arena.left = arena.left + 50;
-	m_Arena.top = arena.top + 50;
-	m_Arena.width = arena.width - 50;
-	m_Arena.height = arena.height - 50;
+	m_Arena.left = arena.left + 150;
+	m_Arena.top = arena.top + 150;
+	m_Arena.width = arena.width - 150;
+	m_Arena.height = arena.height - 150;
 
 	spawn();
 }
 
 void Pickup::spawn()
 {
-	srand((int)time(0) / m_Type);
+	srand((int)time(0) / static_cast<int>(m_Type));
 	int x = (rand() % m_Arena.width);
-	srand((int)time(0) * m_Type);
+	srand((int)time(0) * static_cast<int>(m_Type));
 	int y = (rand() % m_Arena.height);
 
 	m_SecondsSinceSpawn = 0;
@@ -91,7 +91,7 @@ int Pickup::gotIt()
 
 void Pickup::upgrade()
 {
-	if (m_Type == 1)
+	if (m_Type == PickupType::HEALTH)
 	{
 		m_Value += (HEALTH_START_VALUE * .5);
 	}

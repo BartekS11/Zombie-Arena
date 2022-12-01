@@ -1,6 +1,8 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 
+enum class PickupType { AMMO=1, HEALTH=2 };
+
 class Pickup
 {
 private:
@@ -12,7 +14,7 @@ private:
 	sf::Sprite m_Sprite;
 	sf::IntRect m_Arena;
 	int m_Value = 0;
-	int m_Type = 0;
+	PickupType m_Type;
 
 	bool m_Spawned;
 	float m_SecondsSinceSpawn = 0.f;
@@ -21,8 +23,7 @@ private:
 	float m_SecondsToWait = 0.f;
 
 public:
-	Pickup(int type);
-	
+	Pickup(PickupType m);
 	void setArena(sf::IntRect arena);
 
 	void spawn();

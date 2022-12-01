@@ -162,6 +162,7 @@
     <ClCompile Include="src\Bullet.cpp" />
     <ClCompile Include="src\CreateBackground.cpp" />
     <ClCompile Include="src\CreateHorde.cpp" />
+    <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Pickup.cpp" />
     <ClCompile Include="src\Player.cpp" />
     <ClCompile Include="src\SoundHandler.cpp" />
