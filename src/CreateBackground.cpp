@@ -55,7 +55,6 @@ int createBackground(sf::VertexArray& rVA, sf::IntRect arena)
 				rVA[currentVertex + 3].texCoords = sf::Vector2f(0, TILE_SIZE + verticalOffset);
 			}
 
-
 			currentVertex = currentVertex + VERTS_IN_QUAD;
 		}
 	}

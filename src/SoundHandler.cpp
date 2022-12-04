@@ -81,3 +81,9 @@ void SoundHandler::playSound(std::string const& soundName, int volume=15)
 	a.play();
 	}
 }
+
+void SoundHandler::addSound()
+{
+	SoundHandler::LoadNecessarySoundsToBuffers();
+	SoundHandler::LoadNecessarySoundsToSFMLSounds();
+}

@@ -41,8 +41,7 @@ int main()
 
 	sf::Texture textureBackground = TextureHolder::GetTexture("graphics/background_sheet.png");
 
-	SoundHandler::LoadNecessarySoundsToBuffers();
-	SoundHandler::LoadNecessarySoundsToSFMLSounds();
+	SoundHandler::addSound();
 
 	int numZombies;
 	int numZombiesAlive;
@@ -55,7 +54,7 @@ int main()
 	int clipSize = 6;
 	float fireRate = 1;
 	sf::Time lastPressed;
-	
+
 	window.setMouseCursorVisible(false);
 	sf::Sprite spriteCrosshair;
 	sf::Texture textureCrosshair = TextureHolder::GetTexture("graphics/crosshair.png");
@@ -503,6 +502,7 @@ int main()
 			window.draw(gameOverText.getsfText());
 			window.draw(scoreText.getsfText());
 			window.draw(hiScoreText.getsfText());
+
 		}
 		window.display();
 	}

@@ -162,9 +162,9 @@
     <ClCompile Include="src\Bullet.cpp" />
     <ClCompile Include="src\CreateBackground.cpp" />
     <ClCompile Include="src\CreateHorde.cpp" />
-    <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Pickup.cpp" />
     <ClCompile Include="src\Player.cpp" />
+    <ClCompile Include="src\Screen.cpp" />
     <ClCompile Include="src\SoundHandler.cpp" />
     <ClCompile Include="src\TextHandler.cpp" />
     <ClCompile Include="src\TextureHolder.cpp" />
@@ -215,6 +215,7 @@
     <ClInclude Include="src\Bullet.h" />
     <ClInclude Include="src\Pickup.h" />
     <ClInclude Include="src\Player.h" />
+    <ClInclude Include="src\Screen.h" />
     <ClInclude Include="src\SoundHandler.h" />
     <ClInclude Include="src\TextHandler.h" />
     <ClInclude Include="src\TextureHolder.h" />

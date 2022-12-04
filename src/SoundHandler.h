@@ -14,4 +14,5 @@ public:
 	static void LoadNecessarySoundsToSFMLSounds();
 	//void LoadAdditionalSounds();
 	static void playSound(std::string const& soundName, int volume);
+	static void addSound();
 };
